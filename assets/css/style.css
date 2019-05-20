@@ -1,0 +1,6 @@
+#app input[type=radio] {
+    display: none;
+}
+#app input[type=radio]:checked + label{
+    color: red;
+}
