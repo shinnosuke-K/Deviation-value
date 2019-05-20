@@ -21,18 +21,25 @@
         <p><input type="number" value="50.0" step="0.1"></p>
 
         <!-- select type -->
-        <p><input type="radio" name="type" id="ts"><label for="ts">Test Score to Deviation Value</label></p>
-        <p><input type="radio" name="type" id="dv"><label for="dv">Deviation Value to Test Score</label></p>
+        <p><input type="radio" name="type" id="ts" v-on:change="onChange" checked><label for="ts">Test Score to Deviation Value</label></p>
+        <p><input type="radio" name="type" id="dv" v-on:change="onChange"><label for="dv">Deviation Value to Test Score</label></p>
+        <p>{{ key }}</p>
 
         <!-- result of selecet type -->
         <!-- Test Score to Deviation Value -->
-        <p><input type="number" value="100"> 点とれば</p>
-        <p>偏差値は</p>
-        <p>{{ deviationScore }}</p>
+        <div v-show="key">
+            <p><input type="number" value="100"> 点とれば</p>
+            <p>偏差値は</p>
+            <p>{{ deviationScore }}</p>
+        </div>
 
         <!-- Deviation Value to Test Score -->
-        <p>偏差値 <input type="number" value="50.0" step="0.1"> になるには</p>
-        <p>{{ testScore }} 点とればよい</p>
+        <div v-show="!key">
+            <p>偏差値 <input type="number" value="50.0" step="0.1"> になるには</p>
+            <p>あと {{ testScore }} 点とればよい</p>
+        </div>
+
+
 
     </div>
 
