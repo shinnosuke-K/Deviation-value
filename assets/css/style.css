@@ -1,6 +1,39 @@
-#app input[type=radio] {
-    display: none;
+#app {
+    margin: 100px;
+    text-align: center;
 }
-#app input[type=radio]:checked + label{
+
+.score {
+    display: inline-block;
+    text-align: center;
+    margin-left: 50px;
+    margin-bottom: 20px;
+
+    font-size: 30px;
+}
+
+.select-type {
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+    font-size: 30px;
+}
+
+input[type=radio] {
+    display: none;
+    text-align: center
+}
+
+input[type="radio"] + label{
+    display: inline-block;
+    padding: 5px 10px;
+    widows: 120px;
+}
+
+
+ .select-type input[type="radio"]:checked + label{
+    background-color: black;
+    border-radius: 10px;
     color: red;
 }
+

@@ -12,6 +12,7 @@ new Vue({
 
         resultDeviValue: 0,
         resultTestScore: 0,
+
     },
     methods: {
         onChange(event) {
