@@ -1,1 +1,1 @@
-web: deviation-value
+web: go run server.go
