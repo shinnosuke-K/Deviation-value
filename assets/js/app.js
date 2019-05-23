@@ -12,6 +12,7 @@ new Vue({
 
         resultDeviValue: 0,
         resultTestScore: 0,
+
     },
     methods: {
         onChange(event) {
@@ -27,13 +28,13 @@ new Vue({
             var stanDeviation = 10 * (this.testScore - this.averageScore) / (this.deviationValue - 50)
 
             console.log(stanDeviation)
-            this.resultDeviValue = 10 * (this.inputScore - this.averageScore) / stanDeviation + 50
+            this.resultDeviValue = Math.ceil((10 * (this.inputScore - this.averageScore) / stanDeviation + 50) * 10) / 10
             console.log(this.resultDeviValue)
         },
         // calucate test Score
         onChangeValue() {
             var stanDeviation = 10 * (this.testScore - this.averageScore) / (this.deviationValue - 50)
-            this.resultTestScore = stanDeviation * (this.inputValue - 50) / 10 + this.averageScore
+            this.resultTestScore = Math.ceil(stanDeviation * (this.inputValue - 50) / 10 + this.averageScore)
         }
     },
 });

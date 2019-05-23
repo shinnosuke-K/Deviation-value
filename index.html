@@ -5,46 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Deviation value</title>
+
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-    </style>
+
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+
 </head>
 <body>
     <div id="app">
+
         <!-- input Score -->
-        <p>Test Score</p>
-        <p><input type="number" v-model.number="testScore"></p>
-        <p>Deviation Value</p>
-        <p><input type="number" v-model.number="deviationValue" step="0.1"></p>
-        <p>Average Score</p>
-        <p><input type="number" v-model.number="averageScore" step="0.1"></p>
+        <div class="score">
+            <p>点数</p>
+            <p><input type="number" min="0" max="100" v-model.number="testScore"></p>
+        </div>
+
+        <div class="score">
+            <p>偏差値</p>
+            <p><input type="number" min="0" max="100" v-model.number="deviationValue" step="0.1"></p>
+        </div>
+
+        <div class="score">
+            <p>平均点</p>
+            <p><input type="number" min="0" max="100" v-model.number="averageScore" step="0.1"></p>
+        </div>
 
         <!-- For confirmation -->
-        <p>{{ testScore }} {{ deviationValue }} {{ averageScore }}</p>
+        <!-- <p>{{ testScore }} {{ deviationValue }} {{ averageScore }}</p> -->
 
         <!-- select type -->
-        <p><input type="radio" name="type" id="ts" v-on:change="onChange" checked><label for="ts">Test Score to Deviation Value</label></p>
-        <p><input type="radio" name="type" id="dv" v-on:change="onChange"><label for="dv">Deviation Value to Test Score</label></p>
+
+        <div class="select-type">
+            <input type="radio" name="type" id="ts" v-on:change="onChange" checked>
+            <label for="ts" id="ts-dv">
+                点数から偏差値
+            </label>
+        </div>
+
+        <div class="select-type">
+            <input type="radio" name="type" id="dv" v-on:change="onChange">
+            <label for="dv" id="dv-ts">
+                偏差値から点数
+            </label>
+        </div>
+
 
         <!-- For confirmation -->
-        <p>{{ key }}</p>
+        <!-- <p>{{ key }}</p> -->
 
         <!-- result of selecet type -->
         <!-- Test Score to Deviation Value -->
-        <div v-show="key">
+        <div class="result" v-show="key">
             <p>点数が <input type="number" min="0" max="100" v-model.number="inputScore" v-on:change="onChangeScore"> 点になると</p>
             <p>偏差値は</p>
             <p>{{ resultDeviValue }} になる</p>
         </div>
 
         <!-- Deviation Value to Test Score -->
-        <div v-show="!key">
+        <div class="result" v-show="!key">
             <p>偏差値が <input type="number" step="0.1" min="0" max="100" v-model.number="inputValue" v-on:change="onChangeValue"> になると</p>
-            <p>点数は {{ resultTestScore}} になる</p>
+            <p>点数は </p>
+            <p>{{ resultTestScore}} 点になる</p>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script> -->
     <script src="assets/js/app.js"></script>
 </body>
 </html>
