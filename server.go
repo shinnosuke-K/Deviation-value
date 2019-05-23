@@ -35,7 +35,7 @@ func main() {
 	// for Heroku
 	port := os.Getenv("PORT")
 	if port == "" {
-		log.Fatal("$PORT must be set")
+		port = "8080"
 	}
 	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		log.Fatal("ListenAndServer: ", err)

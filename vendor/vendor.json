@@ -1,3 +1,6 @@
 {
-        "rootPath":"Deviation-value"
+	"comment": "",
+	"ignore": "test",
+	"package": [],
+	"rootPath": "Deviation-value"
 }
