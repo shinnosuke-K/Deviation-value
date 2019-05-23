@@ -1,1 +1,1 @@
-web: bin/go run server.go
+web: PORT=$PORT deviation-value
