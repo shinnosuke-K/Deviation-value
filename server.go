@@ -28,9 +28,9 @@ func favionHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-	http.HandleFunc("/favicon.ico", favionHandler)
 	http.Handle("/", &templateHandler{filename: "index.html"})
+	http.HandleFunc("/favicon.ico", favionHandler)
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
 	// for Heroku
 	port := os.Getenv("PORT")
