@@ -1,6 +1,5 @@
 new Vue({
     el: '#app',
-    delimiters: ['${', '}'],
     data: {
         key: true,
 
