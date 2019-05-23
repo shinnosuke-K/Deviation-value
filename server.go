@@ -23,8 +23,13 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	t.templ.Execute(w, nil)
 }
 
+func favionHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "assets/images/favicon.ico")
+}
+
 func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+	http.HandleFunc("/favicon.ico", favionHandler)
 	http.Handle("/", &templateHandler{filename: "index.html"})
 
 	// for Heroku
