@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"path/filepath"
 	"sync"
 )
@@ -26,7 +27,17 @@ func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	http.Handle("/", &templateHandler{filename: "index.html"})
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	// for Heroku
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		log.Fatal("ListenAndServer: ", err)
 	}
+
+	// for Localhost
+	// if err := http.ListenAndServe(":8080", nil); err != nil {
+	// 	log.Fatal("ListenAndServer: ", err)
+	// }
 }
