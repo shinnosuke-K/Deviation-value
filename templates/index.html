@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="shortcut icon" href="/assets/images/favicon.png">
     <title>Deviation value</title>
 
     <!-- Load required Bootstrap and BootstrapVue CSS -->
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <div id="app">
@@ -32,7 +34,7 @@
         </div>
 
         <!-- For confirmation -->
-        <!-- <p>{{ testScore }} {{ deviationValue }} {{ averageScore }}</p> -->
+        <!-- <p>${ testScore } ${ deviationValue } ${ averageScore }</p> -->
 
         <!-- select type -->
         <div class="select-type">
@@ -50,25 +52,25 @@
         </div>
 
         <!-- For confirmation -->
-        <!-- <p>{{ key }}</p> -->
+        <!-- <p>${ key }</p> -->
 
         <!-- result of selecet type
                 Test Score to Deviation Value -->
         <div class="result" v-show="key">
             <p>点数が <input type="number" min="0" max="100" v-model.number="inputScore" v-on:change="onChangeScore"> 点になると</p>
             <p>偏差値は</p>
-            <p>{{ resultDeviValue }} になる</p>
+            <p>${ resultDeviValue } になる</p>
         </div>
 
         <!-- Deviation Value to Test Score -->
         <div class="result" v-show="!key">
             <p>偏差値が <input type="number" step="0.1" min="0" max="100" v-model.number="inputValue" v-on:change="onChangeValue"> になると</p>
             <p>点数は </p>
-            <p>{{ resultTestScore}} 点になる</p>
+            <p>${ resultTestScore } 点になる</p>
         </div>
     </div>
     <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="/assets/js/app.js"></script>
 </body>
 </html>
