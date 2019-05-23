@@ -24,12 +24,8 @@ new Vue({
         },
         // calucate deviation value
         onChangeScore() {
-            console.log(this.testScore, this.averageScore, this.deviationValue)
             var stanDeviation = 10 * (this.testScore - this.averageScore) / (this.deviationValue - 50)
-
-            console.log(stanDeviation)
             this.resultDeviValue = Math.ceil((10 * (this.inputScore - this.averageScore) / stanDeviation + 50) * 10) / 10
-            console.log(this.resultDeviValue)
         },
         // calucate test Score
         onChangeValue() {
