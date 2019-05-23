@@ -1,1 +1,1 @@
-web: bin/deviation-value
+web: bin/go run server.go
