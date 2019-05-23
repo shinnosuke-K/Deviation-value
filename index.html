@@ -7,11 +7,10 @@
     <title>Deviation value</title>
 
     <!-- Load required Bootstrap and BootstrapVue CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
 
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <div id="app">
@@ -36,7 +35,6 @@
         <!-- <p>{{ testScore }} {{ deviationValue }} {{ averageScore }}</p> -->
 
         <!-- select type -->
-
         <div class="select-type">
             <input type="radio" name="type" id="ts" v-on:change="onChange" checked>
             <label for="ts" id="ts-dv">
@@ -51,12 +49,11 @@
             </label>
         </div>
 
-
         <!-- For confirmation -->
         <!-- <p>{{ key }}</p> -->
 
-        <!-- result of selecet type -->
-        <!-- Test Score to Deviation Value -->
+        <!-- result of selecet type
+                Test Score to Deviation Value -->
         <div class="result" v-show="key">
             <p>点数が <input type="number" min="0" max="100" v-model.number="inputScore" v-on:change="onChangeScore"> 点になると</p>
             <p>偏差値は</p>
@@ -72,7 +69,6 @@
     </div>
     <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script> -->
     <script src="assets/js/app.js"></script>
 </body>
 </html>
