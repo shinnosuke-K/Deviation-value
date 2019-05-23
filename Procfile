@@ -1,1 +1,1 @@
-web:deviation-value:app --log-file=-
+web: deviation-value:app --log-file=-
