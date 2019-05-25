@@ -67,6 +67,16 @@
             <p>点数は </p>
             <p>${ resultTestScore } 点になる</p>
         </div>
+
+        <!-- Prefectures select box  -->
+        <select v-model="prefecture">
+            <option v-for="prefecture in prefectures" v-bind:value="prefecture.value">
+                ${ prefecture.name }
+            </option>
+        </select>
+
+        <!-- For confirmation -->
+        <!-- <p>${ prefecture }</p> -->
     </div>
     <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
