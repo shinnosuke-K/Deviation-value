@@ -13,6 +13,8 @@ import (
 	"path/filepath"
 	"strconv"
 	"sync"
+
+	"encoding/json"
 )
 
 type templateHandler struct {
@@ -63,8 +65,8 @@ func infoHandler(w http.ResponseWriter, r *http.Request) {
 	info := []info{}
 	db.Where("deviation between ? and ? AND prefecture = ?", deviation-5, deviation+5, prefecture).Find(&info)
 
-	fmt.Println(info)
-
+	json, err := json.Marshal(info)
+	w.Write(json)
 }
 
 func main() {
