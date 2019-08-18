@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -27,10 +28,18 @@ func favionHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "assets/images/favicon.ico")
 }
 
+func infoHandler(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	fmt.Println("prefectures: ", r.Form["prefecture"])
+	fmt.Println("deviation: ", r.Form["deviation"])
+}
+
 func main() {
 	http.Handle("/", &templateHandler{filename: "index.html"})
 	http.HandleFunc("/favicon.ico", favionHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+
+	http.HandleFunc("/info", infoHandler)
 
 	// for Heroku
 	port := os.Getenv("PORT")
