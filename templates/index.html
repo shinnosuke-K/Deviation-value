@@ -12,6 +12,7 @@
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
 
     <link rel="stylesheet" href="/assets/css/style.css">
+
 </head>
 <body>
     <div id="app">
@@ -84,9 +85,40 @@
                 学校名：${ info.school_name }　URL：${ info.url }
             </li>
         </ul>
+
+        <form id="search">
+            Search <input name="query" v-model="searchQuery">
+        </form>
+        <demo-grid
+            :heroes="gridData"
+            :columns="gridColumns"
+            :filter-key="searchQuery">
+        </demo-grid>
     </div>
+
+    <script type="text/x-template" id="grid-template">
+        <table>
+            <thead>
+                <tr>
+                    <th v-for="key in columns"
+                    @click="sortBy(key)"
+                    :class="{ active: sortKey == key }">
+                    {{ key | capitalize }}
+                        <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="entry in filteredHeroes">
+                    <td v-for="key in columns">
+                        {{ entry[key] }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </script>
     <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="/assets/js/app.js"></script>
 </body>
 </html>
