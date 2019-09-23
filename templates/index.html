@@ -77,6 +77,13 @@
 
         <!-- For confirmation -->
         <!-- <p>${ prefecture }</p> -->
+        <button v-on:click="onGetInfo">check</button>
+
+        <ul>
+            <li v-for="info in infoLists">
+                学校名：${ info.school_name }　URL：${ info.url }
+            </li>
+        </ul>
     </div>
     <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>

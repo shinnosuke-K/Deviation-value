@@ -4,6 +4,8 @@ new Vue({
     data: {
         key: true,
 
+        infoLists: [],
+
         testScore: 50,
         deviationValue: 50.0,
         averageScore: 50.0,
@@ -63,7 +65,8 @@ new Vue({
             { name: '宮崎県',   value: 'miyazaki'},
             { name: '鹿児島県', value: 'kagoshima'},
             { name: '沖縄県',   value: 'okinawa'},
-        ]
+        ],
+
     },
     methods: {
         onChange(event) {
@@ -82,6 +85,24 @@ new Vue({
         onChangeValue() {
             var stanDeviation = 10 * (this.testScore - this.averageScore) / (this.deviationValue - 50)
             this.resultTestScore = Math.ceil(stanDeviation * (this.inputValue - 50) / 10 + this.averageScore)
+        },
+
+        onGetInfo() {
+            if (this.key) {
+                fetch('/info?prefecture=' + this.prefecture + "&deviation=" + Math.round(this.resultDeviValue))
+                .then(response => response.json())
+                .then(response => {
+                    this.infoLists = response
+                })
+                .catch(error => console.error('Error:', error));
+            } else {
+                fetch('/info?prefecture=' + this.prefecture + "&deviation=" + Math.round(this.inputValue))
+                .then(response => response.json())
+                .then(response => {
+                    this.infoLists = response
+                })
+                .catch(error => console.error('Error:', error));
+            }
         }
     },
 });
