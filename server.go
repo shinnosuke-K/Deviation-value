@@ -63,7 +63,7 @@ func infoHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	info := []info{}
-	db.Where("deviation between ? and ? AND prefecture = ?", deviation-5, deviation+5, prefecture).Find(&info)
+	db.Where("deviation between ? and ? AND prefecture = ?", deviation-1, deviation+1, prefecture).Find(&info)
 
 	json, err := json.Marshal(info)
 	w.Write(json)
