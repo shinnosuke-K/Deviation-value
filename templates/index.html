@@ -80,24 +80,15 @@
         <!-- <p>${ prefecture }</p> -->
         <button v-on:click="onGetInfo">check</button>
 
-        <ul>
-            <li v-for="info in infoLists">
-                学校名：${ info.school_name }　URL：${ info.url }
-            </li>
-        </ul>
-
-        <form id="search">
-            Search <input name="query" v-model="searchQuery">
-        </form>
         <demo-grid
-            :heroes="gridData"
+            :heroes="infoLists"
             :columns="gridColumns"
             :filter-key="searchQuery">
         </demo-grid>
     </div>
 
     <script type="text/x-template" id="grid-template">
-        <table>
+        <table id="grid">
             <thead>
                 <tr>
                     <th v-for="key in columns"
