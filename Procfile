@@ -1,1 +1,1 @@
-web: PORT=$PORT deviation-value
+web: Deviation-value
