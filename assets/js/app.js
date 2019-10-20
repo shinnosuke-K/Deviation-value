@@ -59,8 +59,6 @@ new Vue({
     data: {
         key: true,
 
-        infoLists: [],
-
         testScore: 50,
         deviationValue: 50.0,
         averageScore: 50.0,
@@ -122,14 +120,9 @@ new Vue({
             { name: '沖縄県',   value: 'okinawa'},
         ],
 
+        infoLists: [],
         searchQuery: '',
-        gridColumns: ['name', 'power'],
-        gridData: [
-            { name: 'Chuck Norris', power: Infinity },
-            { name: 'Bruce Lee', power: 9000 },
-            { name: 'Jackie Chan', power: 7000 },
-            { name: 'Jet Li', power: 8000 }
-        ]
+        gridColumns: ['school_name', 'url']
     },
     methods: {
         onChange(event) {
