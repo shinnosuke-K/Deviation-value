@@ -6,21 +6,13 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 
-	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"strconv"
-	"sync"
 
 	"encoding/json"
 )
-
-type templateHandler struct {
-	once     sync.Once
-	filename string
-	templ    *template.Template
-}
 
 type info struct {
 	ID         int    `json:"id"`
