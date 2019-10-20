@@ -1,9 +1,7 @@
-Vue.component('my-component', {
-    template: '#my-component'
-})
-
 Vue.component('demo-grid', {
     template: '#grid-template',
+    delimiters: ['${', '}'],
+
     props: {
       heroes: Array,
       columns: Array,
