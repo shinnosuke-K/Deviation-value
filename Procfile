@@ -1,1 +1,1 @@
-web: bin/Deviation-value
+web: bin/deviation-value
