@@ -10,7 +10,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"path/filepath"
 	"strconv"
 	"sync"
 
@@ -32,15 +31,7 @@ type info struct {
 	Prefecture string `json:"prefecture"`
 }
 
-func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	t.once.Do(func() {
-		t.templ = template.Must(template.ParseFiles(filepath.Join("templates", t.filename)))
-	})
-
-	t.templ.Execute(w, nil)
-}
-
-func favionHandler(w http.ResponseWriter, r *http.Request) {
+func faviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "assets/images/favicon.ico")
 }
 
@@ -70,8 +61,9 @@ func infoHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.Handle("/", &templateHandler{filename: "index.html"})
-	http.HandleFunc("/favicon.ico", favionHandler)
+
+	http.Handle("/", http.FileServer(http.Dir("templates")))
+	http.HandleFunc("/favicon.ico", faviconHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
 	http.HandleFunc("/info", infoHandler)
