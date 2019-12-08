@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 
@@ -29,9 +27,6 @@ func faviconHandler(w http.ResponseWriter, r *http.Request) {
 
 func infoHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	//fmt.Println("prefectures: ", r.Form["prefecture"])
-	//fmt.Println("deviation: ", r.Form["deviation"])
-	fmt.Println(r.Form)
 
 	prefecture := r.Form["prefecture"][0]
 	deviation, err := strconv.Atoi(r.Form["deviation"][0])
@@ -39,7 +34,7 @@ func infoHandler(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	db, err := gorm.Open("postgres", "user=prefectures password=pre dbname=prefectures sslmode=disable")
+	db, err := gorm.Open("postgres", os.Getenv("DATABASE_URL"))
 	defer db.Close()
 	if err != nil {
 		log.Fatal(err)
@@ -68,9 +63,4 @@ func main() {
 	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		log.Fatal("ListenAndServer: ", err)
 	}
-
-	// for Localhost
-	// if err := http.ListenAndServe(":8080", nil); err != nil {
-	// 	log.Fatal("ListenAndServer: ", err)
-	// }
 }
