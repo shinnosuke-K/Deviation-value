@@ -25,6 +25,13 @@ func faviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "assets/images/favicon.ico")
 }
 
+func getHost() string {
+	if host := os.Getenv("DATABASE_URL"); host != "" {
+		return host
+	}
+	return "user=prefectures dbname=prefectures password=root sslmode=disable"
+}
+
 func infoHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 
@@ -34,7 +41,7 @@ func infoHandler(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	db, err := gorm.Open("postgres", os.Getenv("DATABASE_URL"))
+	db, err := gorm.Open("postgres", getHost())
 	defer db.Close()
 	if err != nil {
 		log.Fatal(err)
