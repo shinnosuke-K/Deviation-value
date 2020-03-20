@@ -29,7 +29,7 @@ func getHost() string {
 	if host := os.Getenv("DATABASE_URL"); host != "" {
 		return host
 	}
-	return "user=prefectures dbname=prefectures password=root sslmode=disable"
+	return "host=db user=prefectures password=root dbname=prefectures port=5432 sslmode=disable"
 }
 
 func infoHandler(w http.ResponseWriter, r *http.Request) {
@@ -44,7 +44,7 @@ func infoHandler(w http.ResponseWriter, r *http.Request) {
 	db, err := gorm.Open("postgres", getHost())
 	defer db.Close()
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 
 	info := []info{}
