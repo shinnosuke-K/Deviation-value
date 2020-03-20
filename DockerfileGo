@@ -1,0 +1,7 @@
+FROM golang:1.13.4
+
+WORKDIR /go/src
+
+COPY $PWD/ /go/src
+
+CMD [ "go", "run", "server.go" ]
