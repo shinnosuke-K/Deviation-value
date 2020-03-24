@@ -1,7 +1,11 @@
 package controller
 
 import (
+	"encoding/json"
+	"log"
 	"net/http"
+
+	"github.com/shinnosuke-K/Deviation-value/db"
 
 	"github.com/jinzhu/gorm"
 )
@@ -24,4 +28,38 @@ func (ctr *Controller) AssetsHandle() http.Handler {
 
 func (ctr *Controller) FaviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "assets/images/favicon.ico")
+}
+
+func (ctr *Controller) InfoHandler(w http.ResponseWriter, r *http.Request) {
+
+	if err := r.ParseForm(); err != nil {
+		log.Println(err)
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	score := db.Score{
+		Prefecture: r.Form["prefecture"][0],
+		Deviation:  r.Form["deviation"][0],
+	}
+
+	schLists, err := score.GetSchool(ctr.db)
+	if err != nil {
+		log.Println(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	res, err := json.Marshal(schLists)
+	if err != nil {
+		log.Println(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	if _, err := w.Write(res); err != nil {
+		log.Println(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 }
