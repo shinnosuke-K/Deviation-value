@@ -2,6 +2,8 @@ package db
 
 import (
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+
 	"github.com/shinnosuke-K/Deviation-value/util"
 )
 
