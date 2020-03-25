@@ -34,7 +34,7 @@ func (ctr *Controller) InfoHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err := r.ParseForm(); err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusBadRequest)
+		http.Error(w, "Error parse request", http.StatusBadRequest)
 		return
 	}
 
@@ -46,20 +46,20 @@ func (ctr *Controller) InfoHandler(w http.ResponseWriter, r *http.Request) {
 	schLists, err := score.GetSchool(ctr.db)
 	if err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "Not found school info", http.StatusInternalServerError)
 		return
 	}
 
 	res, err := json.Marshal(schLists)
 	if err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "Unmarshal json", http.StatusInternalServerError)
 		return
 	}
 
 	if _, err := w.Write(res); err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "Not write response", http.StatusInternalServerError)
 		return
 	}
 }
