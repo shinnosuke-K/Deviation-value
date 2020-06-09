@@ -2,19 +2,17 @@ version: '3'
 
 services:
   db:
-    build: .
+    image: shin0501/devi-db:latest
     container_name: db-container
     ports:
      - "5432:5432"
-    volumes:
-     - $PWD/docker/db:/docker-entrypoint-initdb.d
     env_file:
      - $PWD/docker/.env
   web:
     build:
       context: .
       dockerfile: DockerfileGo
-    container_name: golang_container
+    container_name: golang-container
     ports:
      - "8080:8080"
     depends_on:
