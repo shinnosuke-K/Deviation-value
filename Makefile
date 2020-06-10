@@ -1,10 +1,6 @@
 all:build
 	docker-compose build --no-cache && docker-compose up
 
-push: build
-	docker push shin0501/devi-web:latest
-	docker push shin0501/devi-db:latest
-
 build: go posgre
 
 go:
