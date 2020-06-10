@@ -1,5 +1,5 @@
-FROM postgres:11-alpine
+FROM postgres:12-alpine
 
-VOLUME $PWD/docker/postgresql/db:/docker-entrypoint-initdb.d
+VOLUME $PWD/db:/docker-entrypoint-initdb.d
 
 RUN echo "listen_addresses = 'web'" >> /var/lib/postgresql/data/postgresql.conf
