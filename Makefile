@@ -1,12 +1,18 @@
+all:build
+	docker-compose build --no-cache && docker-compose up
 
-dbstart:
-	postgres -D /usr/local/var/postgres &
+push: build
+	docker push shin0501/devi-web:latest
+	docker push shin0501/devi-db:latest
 
-dbstop:
-	pkill postgres
+build: go posgre
 
-run:
+go:
+	docker image build ./ -t shin0501/devi-web:latest
 
-	go run server.go
+posgre:
+	docker image build ./docker/postgresql/ -t shin0501/devi-db:latest
 
+up:
+	docker-compose build --no-cache && docker-compose up
 

@@ -1,3 +1,9 @@
-FROM postgres:11-alpine
+FROM golang:1.13.4 as build
+WORKDIR /go/src
+COPY $PWD/ /go/src
+RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o server server.go
 
-RUN echo "listen_addresses = 'web'" >> /var/lib/postgresql/data/postgresql.conf
+FROM alpine:latest
+COPY --from=build /go/src /go/src
+WORKDIR /go/src
+CMD ["/go/src/server"]
