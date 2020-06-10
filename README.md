@@ -4,24 +4,26 @@
 
 このアプリを動かすためのコマンド集です。
 
-DBが動いてないとエラーが動きます。
+#### Dockerイメージを作成後、アプリケーション起動
 
-そのうち、1つのコマンドで動かせられるようにします。
-
-### DBを起動する
-
-```make
-make dbstart
+```makefile
+make
 ```
 
-### DBを停止する
-
-```make
-make dbstop
+#### アプリケーション起動
+```makefile
+make up
 ```
 
-### サーバを起動する
+#### Dockerイメージ作成
 
-```make
-make run
+```makefile
+make build
 ```
+
+またサーバ(Go)側とDB側の別々に実行することもで可能です。
+```makefile
+Go : make go
+DB : make posgre
+```
+
