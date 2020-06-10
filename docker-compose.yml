@@ -9,7 +9,7 @@ services:
     env_file:
      - $PWD/docker/.env
   web:
-    build: .
+    image: shin0501/devi-web:latest
     container_name: web-container
     ports:
      - "8080:8080"
