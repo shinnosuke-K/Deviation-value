@@ -9,10 +9,8 @@ services:
     env_file:
      - $PWD/docker/.env
   web:
-    build:
-      context: .
-      dockerfile: DockerfileGo
-    container_name: golang-container
+    build: .
+    container_name: web-container
     ports:
      - "8080:8080"
     depends_on:
